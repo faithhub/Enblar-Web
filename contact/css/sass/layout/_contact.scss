@@ -1,0 +1,493 @@
+/* ---------------------------------------------------------------- */
+/* 05.Contact Form                                                   
+/* ---------------------------------------------------------------- */
+.contact-form-wrap {
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 23px 49px 0 $color_shadow;
+	.contact-form-group {
+		position: relative;
+		margin-bottom: 30px;
+		> i {
+			left: 14px;
+			top: 14px;
+			width: 32px;
+			height: 32px;
+			position: absolute;
+			text-align: center;
+			line-height: 32px;
+			border-radius: 50%;
+			display: inline-block;
+			pointer-events: none;
+			color: $color_primary;
+			background: rgba($color_primary, 0.2);
+			font: {
+				size: 12px;
+				family: "Font Awesome 5 Free";
+				weight: 700;
+			}
+		}
+		.form-control {
+			height: 60px;
+			color: $color_black;
+			outline: none;
+			padding: 0 60px;
+			font-size: 15px;
+			border: none;
+			border-radius: 5px;
+			transition: all 0.25s ease;
+			box-shadow: 0 5px 20px 0 $color_shadow;
+			@media screen and(max-width:576px) {
+				font-size: 14px;
+			}
+			&:focus {
+				outline: none;
+				border: none;
+				color: $color_black;
+				box-shadow: 0 23px 49px 0 $color_shadow;
+			}
+		}
+		textarea.form-control {
+			height: auto;
+			padding-top: 20px;
+		}
+	}	
+	.empty-form span, .email-invalid span, .phone-invalid span, .terms-alert span {
+		display: block;
+		padding: 20px;
+		margin-bottom: 10px;
+		border-radius: 5px;
+		color: $color_danger_text;
+		background: rgba($color_danger, 0.2);
+	}
+}
+#error_message {
+	margin-top: 30px;
+	display: block;
+	padding: 20px;
+	border-radius: 5px;
+	background: rgba($color_danger, 0.2);
+	color: $color_danger_text;
+}
+
+// Popup Animate
+.danger-form-popup, .success-form-popup {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 4444;
+	display: none;
+	position: fixed;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	background: rgba($color_black, 0.4);
+	box-shadow: 0 23px 49px 0 $color_shadow;
+	&.active {
+		display: flex;
+		.danger-form-popup-inner, .success-form-popup-inner {
+			display: block;
+			animation: popupAnimate 1s ease forwards;
+		}
+	}
+}
+.danger-form-popup-inner, .success-form-popup-inner {
+	width: 450px;
+	display: none;
+	border-radius: 10px;
+	background: $color_white;
+}
+.success-form-popup {
+	.success-form-icon {
+		height: 150px;
+		line-height: 180px;
+		svg {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			fill: $color_primary;
+			stroke: $color_primary;
+			background: rgba($color_primary,0.1);
+		}
+	}
+	.success-form-body {
+		padding: 30px;
+		p {
+			margin-bottom: 30px;
+		}
+	}
+}
+.danger-form-popup-inner {
+	.danger-form-icon {
+		height: 150px;
+		line-height: 180px;
+		svg {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			fill: $color_danger;
+			stroke: $color_danger;
+			background: rgba($color_danger,0.1);
+		}
+	}
+	.danger-form-body {
+		padding: 30px;
+		p {
+			color: $color_black;
+			margin-bottom: 30px;
+		}
+	}
+}
+// Svg Path
+.path {
+	stroke-dasharray: 1000;
+	stroke-dashoffset: 0;
+}
+.path.circle {
+	animation: dash 0.9s ease-in-out;
+}
+.path.line {
+	stroke-dashoffset: 1000;
+	animation: dash 0.9s 0.35s ease-in-out forwards;
+}
+.path.check {
+	stroke-dashoffset: -100;
+	animation: dashCheck 0.9s 0.35s ease-in-out forwards;
+}
+// Svg Path Animate
+@keyframes dash {
+	0% {
+		stroke-dashoffset: 1000;
+	}
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+@keyframes dashCheck {
+	0% {
+		stroke-dashoffset: -100;
+	}
+	100% {
+		stroke-dashoffset: 900;
+	}
+}
+// Custom Check Box
+.custom-control {
+	padding: 0;
+	.custom-control-input {
+		position: relative;
+	}
+	span {
+		vertical-align: middle;
+		margin-left: 14px;
+		color: $color_black;
+		a {
+			color: $color_primary;
+		}
+		@media screen and(max-width:576px) {
+			font-size: 14px;
+		}
+	}
+	.custom-control-label {
+		margin-left: 0;
+		width: 32px;
+		height: 32px;
+		outline: none;
+		text-align: center;
+		line-height: 32px;
+		&::before {
+			top: 0;
+			left: 0;
+			width: 32px;
+			height: 32px;
+			cursor: pointer;
+			text-align: center;
+			line-height: 32px;
+			position: absolute;
+			border:none !important;	
+			pointer-events: initial;
+			border-radius: 50% !important;
+			display: inline-block;
+			color: $color_primary;
+			box-shadow: none !important;
+			background: rgba($color_primary, 0.2);
+			font: {
+				size: 12px;
+				family: "Font Awesome 5 Free";
+				weight: 700;
+			}
+		}
+	}
+}
+.custom-control-input:checked ~ .custom-control-label::before, 
+.custom-control-label:active::before, 
+.custom-control-input:not(:disabled):active ~ .custom-control-label::before  {
+	border:none;	
+	content: "\f00c";
+	color: $color_primary;
+	background: rgba($color_primary, 0.2);
+}
+.custom-control-label::after {
+	display: none;
+}
+.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+   	border:none;
+}
+
+// Validate Form
+.form-validate-icons {
+	top: 0;
+	right: 14px;
+	height: 60px;
+	position: absolute;
+	line-height: 60px;
+	span {
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.5s ease;
+		&:before {
+			width: 32px;
+			height: 32px;
+			text-align: center;
+			line-height: 32px;
+			border-radius: 50%;
+			color: $color_white;
+			display: inline-block;
+			font: {
+				size: 14px;
+				family: "Font Awesome 5 Free";
+				weight: 700;
+			}
+		}
+		&.error {
+			opacity: 1;
+			visibility: visible;
+			&:before {
+				content: "\f00d";
+				color: $color_danger;
+				background: rgba($color_danger, 0.2);
+			}
+		}
+		&.success {
+			opacity: 1;
+			visibility: visible;
+			&:before {
+				content: "\f00c";
+				color: $color_primary;
+				background: rgba($color_primary, 0.2);
+			}
+		}
+	}
+}
+
+// Custom SelectBox
+.custom-select-wrapper {
+	position: relative;
+	select, .select-hide {
+		display: none;
+	}
+	.select-selected {
+		border-radius: 5px;
+		height: 60px;
+		line-height: 60px;
+		outline: none;
+		padding: 0 60px;
+		font-size: 15px;
+		border: none;
+		cursor: pointer;
+		transition: all 0.25s ease;
+		background-color: $color_white;
+		color: $color_body_text !important;
+		box-shadow: 0px 5px 20px 0px $color_shadow;
+		&:focus {
+			outline: none;
+			border: none;
+			box-shadow: 0px 23px 49px 0px $color_shadow;
+		}
+		&:after {
+			right: 14px;
+			top: 14px;
+			width: 32px;
+			height: 32px;
+			line-height: 32px;
+			text-align: center;
+			border-radius: 50%;
+			content: "\f078";
+			position: absolute;
+			pointer-events: none;
+			display: inline-block;
+			color: $color_primary;
+			background: rgba($color_primary, 0.2);
+			font: {
+				size: 14px;
+				family: "Font Awesome 5 Free";
+				weight: 700;
+			}
+		}
+		&.select-arrow-active:after {
+			content: "\f077";
+		}
+	}
+	.select-items {
+		top: 100%;
+		left: 0;
+		right: 0;
+		z-index: 99;
+		margin-top: 10px;
+		border-radius: 5px;
+		position: absolute;
+		background-color: $color_white;
+		box-shadow: 0px 23px 49px 0px $color_shadow;
+		.same-as-selected {
+			background-color: $color_primary;
+			border-bottom-color: $color_primary;
+			color: $color_white !important;
+			&:after {
+				color: $color_white;
+				background: rgba($color_white, 0.1);
+			}	
+		}
+		div {
+			height: 60px;
+			color: $color_black;
+			line-height: 60px;
+			outline: none;
+			width: 100%;
+			display: block;
+			padding: 0 60px;
+			font-size: 15px;
+			border: none;
+			cursor: pointer;
+			transition: all 0.25s ease;
+			position: relative;
+			border-bottom: 1px solid rgba($color_black, 0.08);
+			@media screen and(max-width:576px) {
+				font-size: 14px;
+			}
+			&:focus {
+				outline: none;
+				border: none;
+				box-shadow: 0 23px 49px 0 $color_shadow;
+			}
+			&:last-child {
+				border-radius: 0 0 5px 5px;
+				border-bottom: 0;
+			}
+			&:first-child {
+				border-radius: 5px 5px 0 0;
+			}
+			&:after {
+				content: "\f036";
+				left: 14px;
+				top: 14px;
+				width: 32px;
+				height: 32px;
+				z-index: 14;
+				position: absolute;
+				text-align: center;
+				line-height: 32px;
+				border-radius: 50%;
+				display: inline-block;
+				color: $color_primary;
+				background: rgba($color_primary, 0.2);
+				font: {
+					size: 12px;
+					family: "Font Awesome 5 Free";
+					weight: 700;
+				}
+			}	
+			&:hover{
+				background-color: $color_primary;
+				border-bottom-color: $color_primary;
+				color: $color_white;
+				&:after {
+					color: $color_white;
+					background: rgba($color_white, 0.1);
+				}		
+			}
+		}
+	}
+}
+
+// Terms Popup
+#termsPopup {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 4444;
+	display: none;
+	position: fixed;
+	align-items: center;
+	justify-content: center;
+	background: rgba($color_black, 0.4);
+	box-shadow: 0 23px 49px 0 $color_shadow;
+	&.active {
+		display: flex;
+		.terms-popup-inner {
+			display: block;
+			animation: popupAnimate 1s ease forwards;
+		}
+	}
+	.terms-popup-inner {
+		width: 450px;
+		border-radius: 10px;
+		background: $color_white;
+		display: none;
+		.terms-popup-header {
+			padding: 20px 50px 20px 30px;
+			background: rgba($color_primary, 0.1);
+			position: relative;
+			.popup-close {
+				right: 22px;
+				top: 14px;
+				width: 32px;
+				height: 32px;
+				z-index: 14;
+				position: absolute;
+				text-align: center;
+				line-height: 32px;
+				border-radius: 50%;
+				display: inline-block;
+				color: $color_primary;
+				background: rgba($color_primary, 0.2);
+				font: {
+					size: 12px;
+					family: "Font Awesome 5 Free";
+					weight: 700;
+				}
+			}
+		}
+		.terms-popup-text {
+			padding: 30px;
+			overflow: hidden;
+			p {
+				height: 200px;
+				overflow: hidden;
+				overflow-y: scroll;
+				margin-bottom: 30px;
+				padding-right: 10px;
+				@media screen and(max-width:576px) {
+					font-size: 14px;
+				}
+			}
+		}
+	}
+}	
+@media screen and (max-width:576px) {
+	.danger-form-popup-inner, .success-form-popup-inner,#termsPopup .terms-popup-inner  {
+		width: 85%;
+	}
+}
+// Animation
+@keyframes popupAnimate {
+	0%{
+		opacity: 0;
+		transform: scale(0.98) translate3d(0,15px,0);
+	}
+	100%{
+		opacity: 1;
+		transform: none;
+	}
+}

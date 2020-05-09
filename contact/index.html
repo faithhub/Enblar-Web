@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Conformy - PHP Ajax Modern Contact Form">
+    <meta name="keywords" content="php,ajax,contact form,ajax validate form,php contact form">
+    <meta name="author" content="Yucel Yilmaz">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="fonts/font_awesome/css/all.css">
+    <link rel="stylesheet" href="fonts/fonts/font.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Theme Css -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Enblar-Start a New Projects
+    </title>
+</head>
+
+<body>
+
+    <main class="main-area">
+
+        <!--// Contact Section Start //-->
+        <section class="section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="section-heading">
+                            <h2 class="section-title">Tell Us What You Need
+                            </h2>
+                        </div>
+                    </div>
+                    <!--// .col //-->
+                </div>
+                <!--// .row //-->
+                <div class="row align-items-start justify-content-center">
+                    <div class="col-md-10">
+                        <div class="contact-form-wrap">
+                            <div class="empty-form text-center" style="display: none;"><span>Please Fill Required Fields</span></div>
+                            <div class="terms-alert text-center" style="display: none;"><span>Please Accept The Terms</span></div>
+                            <div class="email-invalid text-center" style="display: none;"><span>Please enter a valid email address.Exp. Name@enblar.com</span></div>
+                            <div class="phone-invalid text-center" style="display: none;"><span>Please enter a valid phone number.Exp. 05555555555</span></div>
+                            <!--// Success Popup //-->
+                            <div class="success-form-popup" id="successPopup">
+                                <div class="success-form-popup-inner">
+                                    <div class="success-form-icon">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                                            <circle class="path circle" fill="none"  stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1" />
+                                            <polyline class="path check" fill="none" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 " />
+                                        </svg>
+                                    </div>
+                                    <div class="success-form-body">
+                                        <p>
+                                            Your Message has been sent Enblar will contact you as soon as possible.
+                                        </p>
+                                        <a href="#" id="successToggleBtn" class="popup-btn success">Ok</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--// Danger Popup //-->
+                            <div class="danger-form-popup" id="dangerPopup">
+                                <div class="danger-form-popup-inner">
+                                    <div class="danger-form-icon">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                                            <circle class="path circle" fill="none" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1" />
+                                            <line class="path line" fill="none" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3" />
+                                            <line class="path line" fill="none" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2" />
+                                        </svg>
+                                    </div>
+                                    <div class="danger-form-body">
+                                        <p>
+                                            Error!Something went wrong.There was an error sending your message.
+                                            <span id="error_message"></span>
+                                        </p>
+                                        <a href="#" id="dangerToggleBtn" class="popup-btn danger">Ok</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <form id="contactForm" action="send_mail.php">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="contact-form-group">
+                                            <input type="text" class="form-control" name="contact_name" autocomplete="off" id="contactName" placeholder="Your Name *">
+                                            <i class="far fa-user"></i>
+                                            <div class="form-validate-icons">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--// .col //-->
+                                    <div class="col-lg-6">
+                                        <div class="contact-form-group">
+                                            <input type="text" class="form-control" name="contact_phone" autocomplete="off" id="contactPhone" placeholder="Phone Exp. 05555555555 *">
+                                            <i class="fas fa-phone-volume"></i>
+                                            <div class="form-validate-icons">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--// .col //-->
+                                    <div class="col-lg-6">
+                                        <div class="contact-form-group">
+                                            <input type="text" class="form-control" name="contact_email" autocomplete="off" id="contactEmail" placeholder="Your Email *">
+                                            <i class="far fa-envelope"></i>
+                                            <div class="form-validate-icons">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--// .col //-->
+                                    <div class="col-lg-6">
+                                        <div class="contact-form-group custom-select-wrapper">
+                                            <select name="contact_subject" class="form-control" id="contactSubject">
+                                                <option value="Customer Services">Website Development</option>
+                                                <option value="Customer Services">Mobile Application</option>
+                                                <option value="Customer Services">Desktop Applications</option>
+                                                <option value="Customer Services">Database Management</option>
+                                                <option value="Sales">Blockchain Development</option>
+                                                <option value="Accounting">Customer Support</option>
+                                                <option value="Sales">Not Listed</option>
+                                            </select>
+                                            <i class="far fa-bookmark"></i>
+                                        </div>
+                                    </div>
+                                    <!--// .col //-->
+                                    <div class="col-lg-12">
+                                        <div class="contact-form-group">
+                                            <textarea name="contact_message" id="contactMessage" class="form-control" autocomplete="off" placeholder="Your Message *" cols="20" rows="10"></textarea>
+                                            <i class="far fa-envelope-open"></i>
+                                            <div class="form-validate-icons">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--// .col //-->
+                                    <div class="col-lg-6">
+                                        <div class="contact-form-group">
+                                            <div class="custom-control custom-checkbox d-flex align-items-center">
+                                                <input type="checkbox" class="custom-control-input" id="termsCheckBox">
+                                                <label class="custom-control-label" for="termsCheckBox"></label>
+                                                <span>I accepted <a href="#" id="termsToggle">Terms and Conditions</a></span>
+                                            </div>
+                                            <!--// Terms Popup //-->
+                                            <div id="termsPopup">
+                                                <div class="terms-popup-inner">
+                                                    <div class="terms-popup-header">
+                                                        <h6>Terms & Conditions</h6>
+                                                        <a href="#" class="popup-close" id="termsClose"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                    <div class="terms-popup-text">
+                                                        <p>
+                                                            Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in 
+                                                            laying out print, graphic or web designs. The passage is attributed to 
+                                                            an unknown typesetter in the 15th century who is thought to have scrambled 
+                                                            parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen 
+                                                            book. It usually begins with.The placeholder text, beginning with the line 
+                                                            “Lorem ipsum dolor sit amet, consectetur adipiscing elit”, looks like Latin 
+                                                            because in its youth, centuries ago, it was Latin.
+                                                        </p>
+                                                        <a href="#" id="termsAgree" class="popup-btn agree">I Agree</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--// .col //-->
+                                    <div class="col-lg-12">
+                                        <div class="contact-btn-left">
+                                            <button type="submit" id="contactBtn" class="default-button">Send Message</button>
+                                        </div>
+                                    </div>
+                                    <!--// .col //-->
+                                </div>
+                                <!--// .row //-->
+                            </form>
+                        </div>
+                    </div>
+                    <!--// .col //-->
+                </div>
+                <!--// .row //-->   
+            </div>
+            <!--// .container //-->
+        </section>
+        <!--// Contact Section End //-->
+
+        <!--// Features Section End //-->
+       
+                    <!--// .col //-->
+                </div>
+                <!--// .row //-->
+            </div>
+            <!--// .container //-->
+        </section>
+        <!--// Features Section End //-->
+
+        <!--// Footer Start //-->
+        <footer class="footer">
+            <div class="copyright-wrap">
+                <div class="container">
+                    <div class="copyright-inner">
+                        <p class="copyright-text">© Copyright.<span id="fullYearCopyright">2020</span>Enblar-Building Your Ideas</p>
+                    </div>
+                </div>
+                <!--// .container //-->
+            </div>
+        </footer>
+        <!--// Footer End //-->
+
+    </main>
+    <!-- Javascript Plugins -->
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/jquery.conformy.plugin.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
